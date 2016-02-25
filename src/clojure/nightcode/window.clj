@@ -10,9 +10,10 @@
   (:import [java.awt Window]
            [java.awt.event WindowAdapter]
            [java.lang.reflect InvocationHandler Proxy]
-           [org.pushingpixels.substance.api SubstanceLookAndFeel]
-           [org.pushingpixels.substance.api.skin GraphiteSkin]))
+           [org.pushingpixels.substance.api SubstanceLookAndFeel] ; remove
+           [org.pushingpixels.substance.api.skin GraphiteSkin])) ; remove
 
+; remove
 (defn set-theme!
   "Sets the theme based on the command line arguments."
   [args]
@@ -21,11 +22,13 @@
     (when theme-resource (reset! ui/theme-resource theme-resource))
     (SubstanceLookAndFeel/setSkin (or skin-object (GraphiteSkin.)))))
 
+; remove
 (defn show-shut-down-dialog!
   "Displays a dialog confirming whether the program should shut down."
   []
   (dialogs/show-shut-down-dialog! (editors/unsaved-paths)))
 
+; remove
 (defn confirm-exit-app!
   "Shuts down unless a quit handler exists or the user cancels it."
   []
@@ -35,6 +38,7 @@
     (System/exit 0)
     true))
 
+; remove
 (defn set-icon!
   "Sets the dock icon on OS X."
   [path]
@@ -44,6 +48,7 @@
           (.invoke nil (object-array []))
           (.setDockIconImage (.getImage (i/icon path)))))
 
+; remove
 (defn enable-full-screen!
   "Enables full screen mode on OS X."
   [window]
@@ -53,6 +58,7 @@
             (into-array Class [Window Boolean/TYPE]))
           (.invoke nil (object-array [window true]))))
 
+; remove
 (defn create-quit-handler
   "Creates an OS X quit handler."
   []
@@ -68,6 +74,7 @@
                                     (.performQuit (second args))
                                     (.cancelQuit (second args)))))))))
 
+; remove
 (defn override-quit-handler!
   "Overrides the default quit handler on OS X."
   []
